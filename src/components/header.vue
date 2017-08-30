@@ -2,6 +2,7 @@
   <div class="header">
     <div class="header-icon" v-show="backDisplay" @click="goBack"><i class="icon">&#xe622;</i></div>
     <div class="header-cont"><p>{{title}}</p></div>
+    <div class="header-cont" @click="switchLang"><p>{{lang}}</p></div>
     <div class="header-icon" v-show="menuDisplay" @click="showBar"><i class="icon">&#xe634;</i></div>
     <div class="header-icon" v-show="mapDisplay" @click="getMap"><i class="icon map-icon">&#xe600;</i></div>
   </div>
