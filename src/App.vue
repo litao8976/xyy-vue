@@ -4,7 +4,7 @@
         <v-alert v-show="showAlert"></v-alert>
         <v-loading v-show="loading"></v-loading>
 
-        <v-header :title="title" :menu-display="menuDisplay" :back-display="backDisplay" :map-display="mapDisplay"></v-header>
+        <v-header :title="title" :lang="lang" :menu-display="menuDisplay" :back-display="backDisplay" :map-display="mapDisplay"></v-header>
         <div class="content" :class="{tabar: tabar}">
             <transition name="slide-left">
                 <router-view></router-view>
@@ -22,6 +22,7 @@ import sidebar from '@/components/sidebar'
 import toast from '@/components/toast'
 import alert from '@/components/alert'
 import loading from '@/components/loading'
+import i18n from '@/i18n'
 
 import { mapGetters, mapActions } from 'vuex'
 
@@ -70,6 +71,13 @@ export default {
             case 'user':
               return "我的"
         }
+      },
+      lang () {
+         if(i18n.locale == 'en'){
+            return '中文'
+         }else{
+            return 'En'
+         }
       },
       tabar () {
         return this.$route.path.split('/').length > 2 ? false : true
