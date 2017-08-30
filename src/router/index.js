@@ -14,6 +14,7 @@ import Post from '../pages/Post'
 import UserMsg from '../pages/UserMsg'
 import Navbar from '../pages/Navbar'
 import NotFound from '../pages/NotFound'
+import Hello from '../pages/Hello'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/hello',
+      name: 'hello',
+      component: Hello
     },
     {
       path: '/home',
