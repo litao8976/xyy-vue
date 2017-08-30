@@ -9,9 +9,11 @@
 </template>
 
 <script>
+  import i18n from '@/i18n'
   export default {
     props: {
       title: String,
+      lang: String,
       menuDisplay: Boolean,
       backDisplay: Boolean,
       mapDisplay: Boolean
@@ -30,6 +32,13 @@
       },
       showBar () {
         this.$store.dispatch('setNavState', true)
+      },
+      switchLang(){
+         if(i18n.locale == 'en'){
+             i18n.locale = 'zh'
+         }else{
+             i18n.locale = 'en'
+         }
       }
     }
   }
