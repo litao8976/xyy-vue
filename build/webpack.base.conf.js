@@ -9,7 +9,9 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.js',
+    hello: './src/newpage/hello.js', // 多页 hello.js
+    tony: './src/newpage/tony/tony.js', // 多页 tony.js
   },
   output: {
     path: config.build.assetsRoot,

@@ -4,20 +4,20 @@ import qs from 'qs'
 import * as _ from '../util/tool'
 
 // axios 配置
-axios.defaults.timeout = 5000;
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.baseURL = 'http://localhost:4000/';
+// axios.defaults.timeout = 5000;
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
+// axios.defaults.baseURL = 'http://localhost:4000/';
 
 //POST传参序列化
-axios.interceptors.request.use((config) => {
-    if(config.method  === 'post'){
-        config.data = qs.stringify(config.data);
-    }
-    return config;
-},(error) =>{
-     _.toast("错误的传参", 'fail');
-    return Promise.reject(error);
-});
+// axios.interceptors.request.use((config) => {
+//     if(config.method  === 'post'){
+//         config.data = qs.stringify(config.data);
+//     }
+//     return config;
+// },(error) =>{
+//      _.toast("错误的传参", 'fail');
+//     return Promise.reject(error);
+// });
 
 //返回状态判断
 axios.interceptors.response.use((res) =>{
@@ -34,6 +34,20 @@ axios.interceptors.response.use((res) =>{
 export function fetch(url, params) {
     return new Promise((resolve, reject) => {
         axios.post(url, params)
+            .then(response => {
+                resolve(response.data);
+            }, err => {
+                reject(err);
+            })
+            .catch((error) => {
+               reject(error)
+            })
+    })
+}
+
+export function get(url) {
+    return new Promise((resolve, reject) => {
+        axios.get(url)
             .then(response => {
                 resolve(response.data);
             }, err => {
@@ -71,28 +85,30 @@ export default {
      * 获取约跑步列表
      */
     SportsList() {
-        return fetch('/api/sportList')
+        return get('/static/jsonData/sportList.json')
     },
 
     /**
      * 获取约出行列表
      */
     TravelsList() {
-        return fetch('/api/travelList')
+        return get('/static/jsonData/travelList.json')
     },
 
     /**
      * 获取约跑步详情
      */
     SportsDetail(id) {
-        return fetch('/api/sportDetail', {sportId: id})
+        //return fetch('/api/sportDetail', {sportId: id})
+        return get('/static/jsonData/sportDetail.json');
     },
 
     /**
      * 获取约出行详情
      */
     TravelsDetail(id) {
-        return fetch('/api/travelDetail', {travelId: id})
+        //return fetch('/api/travelDetail', {travelId: id})
+        return get('/static/jsonData/travelDetail.json');
     },
 
     /**
@@ -106,21 +122,24 @@ export default {
      * 获取用户信息
      */
     UserInfo(id) {
-        return fetch('/users/api/userInfo', {userId: id})
+        // return fetch('/static/jsonData/userInfo.json', {userId: id})
+        return get('/static/jsonData/userInfo.json');
     },
 
     /**
      * 获取用户发布约行个数
      */
      getPubTotravelNum(id) {
-         return fetch('/users/api/getPubTotravelNum', {userId: id})
+         //return fetch('/users/api/getPubTotravelNum', {userId: id})
+         return get('/static/jsonData/getPubTotravelNum.json');
      },
 
      /**
       * 获取用户自己发布的约行
       */
       getMyTravel(id) {
-          return fetch('/users/api/myTravel', {userId: id})
+          //return fetch('/users/api/myTravel', {userId: id})
+          return get('/static/jsonData/myTravel.json');
       },
 
     /**

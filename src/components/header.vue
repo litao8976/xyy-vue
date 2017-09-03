@@ -2,15 +2,18 @@
   <div class="header">
     <div class="header-icon" v-show="backDisplay" @click="goBack"><i class="icon">&#xe622;</i></div>
     <div class="header-cont"><p>{{title}}</p></div>
+    <div class="header-cont" @click="switchLang"><p>{{lang}}</p></div>
     <div class="header-icon" v-show="menuDisplay" @click="showBar"><i class="icon">&#xe634;</i></div>
     <div class="header-icon" v-show="mapDisplay" @click="getMap"><i class="icon map-icon">&#xe600;</i></div>
   </div>
 </template>
 
 <script>
+  import i18n from '@/i18n'
   export default {
     props: {
       title: String,
+      lang: String,
       menuDisplay: Boolean,
       backDisplay: Boolean,
       mapDisplay: Boolean
@@ -29,9 +32,16 @@
       },
       showBar () {
         this.$store.dispatch('setNavState', true)
+      },
+      switchLang(){
+         if(i18n.locale == 'en'){
+             i18n.locale = 'zh'
+         }else{
+             i18n.locale = 'en'
+         }
       }
-    }
   }
+}
 </script>
 
 <style lang="scss" scoped>

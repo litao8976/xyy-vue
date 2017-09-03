@@ -6,6 +6,8 @@ import router from './router'
 
 import store from './vuex/store'
 import * as filters from './util/filter'
+import i18n from './i18n'
+
 
 Object.keys(filters).forEach(k => Vue.filter(k, filters[k])) //注册过滤器
 
@@ -14,5 +16,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   ...App
 })

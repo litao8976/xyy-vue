@@ -57,6 +57,32 @@ var webpackConfig = merge(baseWebpackConfig, {
         // https://github.com/kangax/html-minifier#options-quick-reference
       },
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunks: ['manifest', 'vendor', 'app'], 
+      chunksSortMode: 'dependency'
+    }),
+      //----------多页 start
+    new HtmlWebpackPlugin({
+      filename: config.build.hello,
+      template: 'hello.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunks: ['manifest', 'vendor', 'hello'], //需要引入的chunk，不配置就会引入所有页面的资源
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: config.build.tony,
+      template: 'views/tony.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+      },
+      chunks: ['manifest', 'vendor', 'hello'], //需要引入的chunk，不配置就会引入所有页面的资源
       chunksSortMode: 'dependency'
     }),
     // split vendor js into its own file
