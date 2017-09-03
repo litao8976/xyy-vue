@@ -9,7 +9,7 @@ export default {
 
   data () {
     return {
-      msg: 'Hello tony !'
+      msg: 'Hello sourceTree!'
     }
   }
 }
